@@ -1,10 +1,7 @@
 package com.longer.idrecognize;
 
-import androidx.appcompat.app.AppCompatActivity;
-import pub.devrel.easypermissions.AfterPermissionGranted;
-import pub.devrel.easypermissions.EasyPermissions;
-
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,6 +18,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import androidx.appcompat.app.AppCompatActivity;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,9 +71,10 @@ public class MainActivity extends AppCompatActivity {
     private native String stringFromJNI();
 
 
+    @SuppressLint("StaticFieldLeak")
     private void initTess() {
         //让它在后台去初始化 记得加读写权限
-        asyncTask = new AsyncTask<Void, Void, Boolean>() {
+        this.asyncTask = new AsyncTask<Void, Void, Boolean>() {
             @Override
             protected Boolean doInBackground(Void... params) {
                 //目录+文件名 目录下需要tessdata目录
